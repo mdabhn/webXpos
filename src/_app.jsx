@@ -4,7 +4,7 @@ import Products from './components/products'
 const App = () => {
   return (
     <div className=''>
-      <div className='grid grid-rows grid-cols-11 grid-flow-col gap-4'>
+      <div className='grid grid-rows grid-cols-11 grid-flow-col gap-3'>
         <div className='col-span-4 h-screen bg-slate-200'>
           <Invoicer />
         </div>

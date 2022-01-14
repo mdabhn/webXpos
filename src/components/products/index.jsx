@@ -1,4 +1,7 @@
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { BsFillCreditCardFill } from 'react-icons/bs'
 import Product from './product'
+import './index.css'
 
 const productsData = [
   {
@@ -63,7 +66,20 @@ const Products = () => {
           <Product {...data} key={data.id} />
         ))}
       </div>
-      <div className='absolute bottom-0'>hello</div>
+      <div className='absolute bottom-0 w-100 overflow-hidden'>
+        <div className='row d-flex text-white'>
+          <div className='col _icons bg-blue-600'>
+            <AiOutlineArrowLeft />
+          </div>
+          <div className='col _icons bg-blue-800'>
+            <BsFillCreditCardFill />{' '}
+            <span className='ms-1'>Sell Gift Cards</span>
+          </div>
+          <div className='col _icons bg-blue-600'>
+            <AiOutlineArrowRight />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

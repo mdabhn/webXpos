@@ -3,7 +3,7 @@ import './index.css'
 const Product = ({ name, price, imgSrc, alt }) => {
   return (
     <div
-      className='m-2 card d-flex relative justify-items-center align-items-center __single_product'
+      className='m-2 card d-flex relative justify-items-center align-items-center __single_product uppercase'
       title={`${name}. Price - ${price}`}
       style={{ height: '160px' }}
     >
