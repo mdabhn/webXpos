@@ -9,9 +9,7 @@ const CustomerType = () => {
           className='form-select bg-slate-200'
           aria-label='Default select example'
         >
-          <option defaultValue value='win-cs'>
-            Walk-In Customer
-          </option>
+          <option defaultValue='win-cs'>Walk-In Customer</option>
           <option value='online'>Online Customer</option>
         </select>
       </div>

@@ -30,12 +30,14 @@ const InvoiceTable = () => {
         </thead>
 
         <tbody>
-          {inInvoice.map(({ id, name, price, qty }) => (
-            <tr id={id}>
-              <th scope='row'>{name}</th>
+          {inInvoice.map(({ id, name, price, qty }, index) => (
+            <tr key={id}>
+              <th scope='row'>
+                IT{inInvoice.length - index} {name}
+              </th>
               <td>{price}</td>
               <td>
-                <input value={qty} className='w-10' />
+                <input defaultValue={qty} className='w-10' />
               </td>
               <td>{qty * price}</td>
               <td className='text-center'>

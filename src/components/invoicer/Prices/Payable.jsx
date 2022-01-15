@@ -1,12 +1,19 @@
+import { useContext } from 'react'
 import { BiEdit } from 'react-icons/bi'
+import { ProductContext } from '../../../Context/ContextApi'
+import { totalAmount } from '../../../utils/getTotalValue'
 
 const Payable = () => {
+  const { inInvoice } = useContext(ProductContext)
+
   return (
     <>
       <div className='container-fluid row p-0 border-y border-black'>
         <div className='col-6 d-flex justify-between p-2'>
           <span>Items</span>
-          <span className='font-bold'>x(x.00)</span>
+          <span className='font-bold'>
+            {inInvoice.length}({inInvoice.length}.00)
+          </span>
         </div>
         <div className='col-6 d-flex justify-between p-2'>
           <span>Total</span>
@@ -14,7 +21,7 @@ const Payable = () => {
             {new Intl.NumberFormat('en-IN', {
               style: 'currency',
               currency: 'BDT',
-            }).format(5142)}
+            }).format(totalAmount(inInvoice))}
           </span>
         </div>
       </div>
@@ -41,7 +48,7 @@ const Payable = () => {
           {new Intl.NumberFormat('en-IN', {
             style: 'currency',
             currency: 'BDT',
-          }).format(5142)}
+          }).format(totalAmount(inInvoice))}
         </div>
       </div>
     </>
