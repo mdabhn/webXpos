@@ -1,10 +1,18 @@
+import { useContext } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { ImCross } from 'react-icons/im'
+import { ProductContext } from '../../../Context/ContextApi'
 
 const InvoiceTable = () => {
+  const { inInvoice, setInInvoice } = useContext(ProductContext)
+
+  const removeItem = (id) => {
+    setInInvoice(inInvoice.filter((i) => i.id !== id))
+  }
+
   return (
-    <div>
-      <table className='table table-striped table-bordered mt-2 border-gray-400 text-center'>
+    <div style={{ height: '40%', overflowY: 'scroll' }}>
+      <table className='table table-striped table-bordered mt-2 border-gray-400 text-center overflow-scroll'>
         <thead>
           <tr>
             <th scope='col' style={{ width: '50%' }}>
@@ -20,23 +28,34 @@ const InvoiceTable = () => {
             </th>
           </tr>
         </thead>
+
         <tbody>
-          <tr>
-            <th scope='row'>1</th>
-            <td>100000</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td className='text-center'>
-              <span
-                className='d-flex justify-content-center align-items-center h-100'
-                title='remove'
-              >
-                <ImCross className='mt-1 cursor-pointer' />
-              </span>
-            </td>
-          </tr>
+          {inInvoice.map(({ id, name, price, qty }) => (
+            <tr id={id}>
+              <th scope='row'>{name}</th>
+              <td>{price}</td>
+              <td>
+                <input value={qty} className='w-10' />
+              </td>
+              <td>{qty * price}</td>
+              <td className='text-center'>
+                <span
+                  className='d-flex justify-content-center align-items-center h-100'
+                  title='remove'
+                >
+                  <ImCross
+                    className='mt-1 cursor-pointer'
+                    onClick={() => removeItem(id)}
+                  />
+                </span>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
+      {inInvoice.length === 0 && (
+        <p className='text-center w-100'>No Item Added !</p>
+      )}
     </div>
   )
 }
