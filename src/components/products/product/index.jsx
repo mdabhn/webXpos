@@ -12,7 +12,7 @@ const Product = ({ name, price, imgSrc, alt }) => {
         alt={alt}
         className='p-2'
         style={{
-          minWidth: '130px',
+          minWidth: '50%',
           width: '145px',
           objectFit: 'cover',
         }}
