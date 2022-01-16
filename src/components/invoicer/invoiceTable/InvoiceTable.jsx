@@ -32,14 +32,32 @@ const InvoiceTable = () => {
         <tbody>
           {inInvoice.map(({ id, name, price, qty }, index) => (
             <tr key={id}>
-              <th scope='row'>
+              <th scope='row' className='text-left'>
                 IT{inInvoice.length - index} {name}
               </th>
-              <td>{price}</td>
-              <td>
-                <input defaultValue={qty} className='w-10' />
+              <td className='text-right'>
+                {
+                  new Intl.NumberFormat('en-IN', {
+                    style: 'currency',
+                    currency: 'BDT',
+                  })
+                    .format(price)
+                    .split('BDT')[1]
+                }
               </td>
-              <td>{qty * price}</td>
+              <td>
+                <input defaultValue={qty} className='w-10 text-center' />
+              </td>
+              <td className='text-right'>
+                {
+                  new Intl.NumberFormat('en-IN', {
+                    style: 'currency',
+                    currency: 'BDT',
+                  })
+                    .format(qty * price)
+                    .split('BDT')[1]
+                }
+              </td>
               <td className='text-center'>
                 <span
                   className='d-flex justify-content-center align-items-center h-100'

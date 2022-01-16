@@ -1,7 +1,9 @@
+import { useEffect, useContext } from 'react'
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import { BsFillCreditCardFill } from 'react-icons/bs'
 import Product from './product'
 import './index.css'
+import { ProductContext } from '../../Context/ContextApi'
 
 const productsData = [
   {
@@ -56,8 +58,36 @@ const productsData = [
 ]
 
 const Products = () => {
+  const { showToast, setshowToast } = useContext(ProductContext)
+
+  useEffect(() => {
+    if (showToast) {
+      const tst = document.getElementById('toast')
+      if (!tst.classList.contains('show')) {
+        tst.classList.add('show')
+        setTimeout(() => {
+          const tst = document.getElementById('toast')
+          tst.classList.remove('show')
+        }, 3000)
+        setshowToast(false)
+      }
+    }
+  }, [showToast, setshowToast])
+
   return (
     <div className='relative h-screen'>
+      <div className='toast absolute right-0 z-10' id='toast'>
+        <div className='toast-header bg-green-600 text-white'>
+          <strong className='me-auto'>Successful</strong>
+          <button type='button' className='btn-close' data-bs-dismiss='toast'>
+            x
+          </button>
+        </div>
+        <div className='toast-body'>
+          <p>The Order is Saved Successfully</p>
+        </div>
+      </div>
+
       <div
         style={{ placeSelf: 'center' }}
         className='d-flex justify-content-between'
